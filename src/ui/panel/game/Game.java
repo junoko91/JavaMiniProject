@@ -1,5 +1,6 @@
 package ui.panel.game;
 
+import ui.panel.main.Main;
 import ui.swingmodule.Custom;
 import wordmodule.FileManager;
 
@@ -27,6 +28,7 @@ public class Game extends JPanel {
     private Vector<String> words;
     private JLabel monster1;
     private int count = 0;
+    private static int score = 0;
 
     public int getCount() {
         return this.count;
@@ -189,7 +191,7 @@ public class Game extends JPanel {
         add(this.information);
         add(this.item);
 
-        this.monster1 = Custom.label(322, 280, 380, 50, "", 40);
+        this.monster1 = Custom.label(322, 280, 380, 50, "", 20);
         this.monster1.setForeground(Color.white);
         this.monster1.setBorder(new LineBorder(Color.white));
         this.getMapPanel().add(this.monster1);
@@ -215,7 +217,9 @@ public class Game extends JPanel {
                 getInput().setText(getInput().getText().substring(0, 30));
             }
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                if (getMonster().getText().equals(getInput().getText()+"\r")) {
+                if (getMonster().getText().equals(getInput().getText() + "\r")) {
+                    score += 10;
+                    information.setScore(score);
                     System.out.println("Correct!");
                     increaseCount();
                     if (getCount() < 20)

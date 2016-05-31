@@ -42,7 +42,7 @@ public class Word extends JPanel {
         this.wordArea = new JTextArea("");
         JScrollPane scrollPane = Custom.scrollPane(this.wordArea, 2, 60, 220, 224);
 
-        JButton change = Custom.button(0, 295, 224, 40, "수정하기", 20);
+        JButton change = Custom.button(0, 295, 224, 40, "수정하기 ", 20);
         change.addActionListener(new ChangeListener());
         JButton back = Custom.button(0, 345, 224, 40, "뒤로가기", 20);
         back.addActionListener(new MainListener(main));

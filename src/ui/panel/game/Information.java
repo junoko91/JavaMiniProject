@@ -29,6 +29,10 @@ public class Information extends JPanel {
         return this.score;
     }
 
+    public  void setScore(int score){
+        this.score.setText(Integer.toString(score)+"점");
+    }
+
     Information() {
         setLayout(null);
         setBounds(0, 0, 1024, 40);

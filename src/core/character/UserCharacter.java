@@ -2,9 +2,6 @@ package core.character;
 
 import debug.Debug;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 /**
  * Created by JUNO_XPS on 2016-05-13.
  */

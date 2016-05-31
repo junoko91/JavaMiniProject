@@ -1,6 +1,7 @@
 package ui.panel.main;
 
 import ui.panel.game.Game;
+import ui.panel.game.Information;
 import ui.panel.menu.MyMenu;
 import ui.panel.nickname.Nickname;
 import ui.panel.start.Start;
@@ -91,15 +92,12 @@ public class Main extends JFrame {
         public void mouseClicked(MouseEvent e) {
             if (getWordPanel().isVisible()) {
                 getMenuPanel().setNowPanel(getWordPanel());
-            }
-            else if (getGamePanel().isVisible()) {
+            } else if (getGamePanel().isVisible()) {
                 getMenuPanel().setNowPanel(getGamePanel());
                 getGamePanel().stopStopwatch();
-            }
-            else if (getStartPanel().isVisible()) {
+            } else if (getStartPanel().isVisible()) {
                 getMenuPanel().setNowPanel(getStartPanel());
-            }
-            else if (getNicknamePanel().isVisible()) {
+            } else if (getNicknamePanel().isVisible()) {
                 getMenuPanel().setNowPanel(getNicknamePanel());
             }
 
@@ -116,7 +114,8 @@ public class Main extends JFrame {
             }
         }
     }
+
     public static void main(String[] args) {
-	    new Main();
+        new Main();
     }
 }

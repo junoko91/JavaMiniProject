@@ -24,8 +24,8 @@ public class GraphicObject {
 
     GraphicObject(int coordiX, int coordiY,int height,int width) {
         point = new Point(coordiX+width/2,coordiY+height/2);
-        this.height = height;
-        this.width = width;
+        /*this.height = height;
+        this.width = width;*/
 
         Debug.println("create GraphicObject");
     }
