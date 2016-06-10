@@ -60,8 +60,8 @@ public class Converter extends IOException {
                 last = stringArr[stringArr.length - 1];
 
                 for (int i = 0; i < stringArr.length - 1; i++) {
-                    if (checkList.containsKey(stringArr[i] + "\r\n") == false) {
-                        checkList.put(stringArr[i] + "\r\n", null);
+                    if (checkList.containsKey(stringArr[i]) == false) {
+                        checkList.put(stringArr[i], null);
                         buffer2.put((stringArr[i] + "\r\n").getBytes("MS949"));
                         if (buffer2.limit()-buffer2.position()< 100) {
                             buffer2.flip();
@@ -83,10 +83,10 @@ public class Converter extends IOException {
         buffer2.clear();
     }
 
-   public static void main(String[] args) {
+  /* public static void main(String[] args) {
         long start = System.currentTimeMillis();
         new Converter("word.txt", "\n");
         long end = System.currentTimeMillis();
         System.out.println(end-start);
-    }
+    }*/
 }

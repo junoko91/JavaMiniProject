@@ -29,10 +29,13 @@ public class FileManager extends IOException {
 
         try {
             this.inputStream = new FileInputStream(path);
+
             this.channel = this.inputStream.getChannel();
         } catch (IOException IOE) {
             Debug.println("FileManager - file open error");
+            new Converter("word.txt","\n");
         }
+
 
         try {
             String last = "";
@@ -75,9 +78,9 @@ public class FileManager extends IOException {
     }
 
 
-   /* public static void main(String[] args) {
+    public static void main(String[] args) {
         FileManager rd = new FileManager();
 
         System.out.println(rd.getWordManager().getAllWords());
-    }*/
+    }
 }
