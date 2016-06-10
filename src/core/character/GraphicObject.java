@@ -1,21 +1,23 @@
 package core.character;
 
+import core.gamedata.GameData;
 import debug.Debug;
 
 import java.awt.*;
-import java.util.Objects;
 import java.util.Vector;
-import java.util.zip.CheckedInputStream;
 
 /**
  * Created by JUNO_XPS on 2016-05-13.
  */
 
-public class GraphicObject {
+public abstract class GraphicObject implements Runnable {
+    protected String name;
     private int objectType;
     protected Dimension dimension = new Dimension();
+    private Dimension limitLine = new Dimension();
     protected Point point = new Point();
     public Vector<Circle> circles = new Vector<Circle>(5);
+    int life;
 
 
     GraphicObject(int coordiX, int coordiY, int objectType) {
@@ -25,7 +27,13 @@ public class GraphicObject {
         for (int i = 0; i < circles.size(); i++) {
             circles.get(i).setCircle(this.point);
         }
+        limitLine.setSize(GameData.limitLine);
         Debug.println("create GraphicObject");
+    }
+
+    public Point getPoint() {
+        Point ret = new Point(this.point);
+        return ret;
     }
 
     private void setLocation(Point point) {
@@ -43,11 +51,18 @@ public class GraphicObject {
             }
         }
         return ret;
+
     }
 
     public void move(int incX, int incY) {
         Point tmpPoint = new Point();
         tmpPoint.setLocation(this.point.getX() + incX, this.point.getY() + incY);
+
+        if (limitLine.getWidth() < tmpPoint.getX() + this.dimension.getWidth()
+                | limitLine.getHeight() < tmpPoint.getY() + this.dimension.getHeight()) {
+            return;
+        } //맵안에서의 가능한 크기보다 크면 return;
+
         Vector<Circle> tmpCircles = new Vector<Circle>(5);
         tmpCircles.addAll(this.circles);
         for (int i = 0; i < tmpCircles.size(); i++) {
@@ -62,5 +77,11 @@ public class GraphicObject {
 
         this.setLocation(tmpPoint);
     }
+
+    public void attacked() {
+        this.life--;
+    }
+
+    public abstract void run();
 }
 
