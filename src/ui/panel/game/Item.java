@@ -12,7 +12,7 @@ import java.awt.*;
 public class Item extends JPanel {
     public Item() {
         setLayout(null);
-        setBounds(0, 677, 1028, 40);
+        setBounds(0, 677, 1024, 40);
 
         JLabel item1 = Custom.label(0, 0, 60, 40, "item1", 20);
         item1.setBorder(new LineBorder(Color.RED));

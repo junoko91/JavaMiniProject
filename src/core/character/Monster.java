@@ -30,7 +30,7 @@ public class Monster extends GraphicObject {
         }
     }
 
-    public void attack(){
+    synchronized public void attack(){
         if(attackCycle++%300==0){
             user.attacked();
             attackCycle=0;
@@ -63,6 +63,8 @@ public class Monster extends GraphicObject {
             }
 
             this.move(incX, incY);
+
+            //gamescore 올리는 시퀀스
         }
     }
 }

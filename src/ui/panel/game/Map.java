@@ -19,7 +19,7 @@ public class Map extends JPanel {
         try {
             image = ImageIO.read(new File("./src/resource/background.png"));
         } catch (IOException e) {
-            System.err.print("ì´ë¯¸ì§€ë¥¼ ì—´ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
+            System.err.print("ÀÌ¹ÌÁö¸¦ ¿­Áö ¸øÇß½À´Ï´Ù.");
         }
 
         super.paintComponent(g);

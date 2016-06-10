@@ -30,21 +30,21 @@ public class Information extends JPanel {
     }
 
     public  void setScore(int score){
-        this.score.setText(Integer.toString(score)+"ì ");
+        this.score.setText(Integer.toString(score)+"Á¡");
     }
 
     Information() {
         setLayout(null);
         setBounds(0, 0, 1024, 40);
 
-        JLabel timeLabel = Custom.label(0, 0, 128, 40, "ì§„í–‰ì‹œê°„", 20);
+        JLabel timeLabel = Custom.label(0, 0, 128, 40, "ÁøÇà½Ã°£", 20);
         this.time = Custom.label(128, 0, 128, 40, "00:00:00", 20);
-        JLabel nicknameLabel = Custom.label(256, 0, 128, 40, "ë‹‰ë„¤ì„", 20);
+        JLabel nicknameLabel = Custom.label(256, 0, 128, 40, "´Ğ³×ÀÓ", 20);
         this.nickname = Custom.label(384, 0, 128, 40, "", 20);
-        JLabel levelLabel = Custom.label(512, 0, 128, 40, "ë‚œì´ë„", 20);
+        JLabel levelLabel = Custom.label(512, 0, 128, 40, "³­ÀÌµµ", 20);
         this.level = Custom.label(640, 0, 128, 40, "1", 20);
-        JLabel scoreLabel = Custom.label(768, 0, 128, 40, "ì ìˆ˜", 20);
-        this.score = Custom.label(896, 0, 128, 40, "0ì ", 20);
+        JLabel scoreLabel = Custom.label(768, 0, 128, 40, "Á¡¼ö", 20);
+        this.score = Custom.label(896, 0, 128, 40, "0Á¡", 20);
 
         add(timeLabel);
         add(this.time);

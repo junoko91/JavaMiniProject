@@ -8,21 +8,21 @@ import java.util.Vector;
 public class ObjectManager {
     static Vector<GraphicObject> objectList = new Vector<GraphicObject>();
 
-    static void add(GraphicObject object) {
+    synchronized static void add(GraphicObject object) {
         if (objectList.contains(object))
             return;
 
         objectList.add(object);
     }
 
-    static void remove(GraphicObject object) {
+    synchronized static void remove(GraphicObject object) {
         if (!objectList.contains(object))
             return;
 
         objectList.remove(object);
     }
 
-    static Vector<GraphicObject> getObjectListist(){
+    synchronized static Vector<GraphicObject> getObjectListist(){
         Vector<GraphicObject> ret = new Vector<GraphicObject>();
         ret.addAll(objectList);
         return ret;

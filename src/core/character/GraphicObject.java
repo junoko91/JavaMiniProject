@@ -78,7 +78,7 @@ public abstract class GraphicObject implements Runnable {
         this.setLocation(tmpPoint);
     }
 
-    public void attacked() {
+    synchronized public void attacked() {
         this.life--;
     }
 

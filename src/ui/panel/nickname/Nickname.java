@@ -23,7 +23,7 @@ public class Nickname extends JPanel {
         setBounds(400, 180, 224, 200);
         setBackground(new Color(21, 21, 23, 1));
 
-        JLabel label = Custom.label(0, 0, 224, 60, "ë‹‰ë„¤ìž„", 30);
+        JLabel label = Custom.label(0, 0, 224, 60, "´Ð³×ÀÓ", 30);
         label.setForeground(Color.white);
         this.nickname = Custom.textField(2, 80, 220, 50, 20);
         JButton button = Custom.button(0, 150, 224, 50, "Start", 15);
@@ -44,7 +44,7 @@ public class Nickname extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
             this.main.getGamePanel().readFile();
-            this.main.getGamePanel().setMonster(this.main.getRd().getWordManager().popWord());
+            //this.main.getGamePanel().setMonster(this.main.getRd().getWordManager().popWord());
 
             this.main.getGamePanel().setNickname(getNickname().getText());
             this.main.getGamePanel().setVisible(true);

@@ -27,12 +27,12 @@ public class MyMenu extends JPanel {
         setBounds(0, 0, 1024, 720);
         setBackground(new Color(0, 0, 0, 200));
 
-        JLabel subject = Custom.label(400, 200, 224, 40, "Î©î Îâ¥", 40);
+        JLabel subject = Custom.label(400, 200, 224, 40, "∏ﬁ ¥∫", 40);
         subject.setForeground(Color.white);
-        JButton first = Custom.button(400, 300, 224, 40, "Ï≤òÏùåÏúºÎ°ú", 20);
+        JButton first = Custom.button(400, 300, 224, 40, "√≥¿Ω¿∏∑Œ", 20);
         JButton option = Custom.button(400, 350, 224, 40, "Option", 20);
         JButton rank = Custom.button(400, 400, 224, 40, "Ranking", 20);
-        JButton exit = Custom.button(400, 450, 224, 40, "ÎÇòÍ∞ÄÍ∏∞", 20);
+        JButton exit = Custom.button(400, 450, 224, 40, "≥™∞°±‚", 20);
 
         FirstListener firstListener = new FirstListener(main);
         OptionListener optionListener = new OptionListener();

@@ -194,7 +194,7 @@ public class Game extends JPanel {
         this.monster1 = Custom.label(322, 280, 380, 50, "", 20);
         this.monster1.setForeground(Color.white);
         this.monster1.setBorder(new LineBorder(Color.white));
-        this.getMapPanel().add(this.monster1);
+        //this.getMapPanel().add(this.monster1);
     }
 
     private class StopwatchListener implements ActionListener {

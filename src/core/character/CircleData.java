@@ -31,7 +31,7 @@ public class CircleData {
         //각각의 충돌 써클을 하드코딩으로 넣어논다.
     }
 
-    static Vector getVetor(int objectType){
+    synchronized static Vector getVetor(int objectType){
         load();
         Vector<Circle> ret = new Vector<Circle>();
         ret.addAll(vectors.get(objectType));

@@ -7,5 +7,5 @@ import java.awt.*;
  */
 public class GameData {
     //public static final Dimension limitLine = new Dimension(limitX, limitY);
-    public static final Dimension limitLine = new Dimension(900, 900);
+    public static final Dimension limitLine = new Dimension(1024, 597);
 }

@@ -42,9 +42,9 @@ public class Word extends JPanel {
         this.wordArea = new JTextArea("");
         JScrollPane scrollPane = Custom.scrollPane(this.wordArea, 2, 60, 220, 224);
 
-        JButton change = Custom.button(0, 295, 224, 40, "ìˆ˜ì •í•˜ê¸° ", 20);
+        JButton change = Custom.button(0, 295, 224, 40, "¼öÁ¤ÇÏ±â ", 20);
         change.addActionListener(new ChangeListener());
-        JButton back = Custom.button(0, 345, 224, 40, "ë’¤ë¡œê°€ê¸°", 20);
+        JButton back = Custom.button(0, 345, 224, 40, "µÚ·Î°¡±â", 20);
         back.addActionListener(new MainListener(main));
 
         add(subject);
