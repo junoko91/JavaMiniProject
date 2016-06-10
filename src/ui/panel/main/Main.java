@@ -46,7 +46,7 @@ public class Main extends JFrame {
         return this.wordPanel;
     }
 
-    Main() {
+    public Main() {
         rd = new FileManager();
 
         setTitle("TYPIXEL");
@@ -113,9 +113,5 @@ public class Main extends JFrame {
                 getMenuPanel().getNowPanel().setVisible(false);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Main();
     }
 }

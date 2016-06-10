@@ -31,9 +31,17 @@ public abstract class GraphicObject implements Runnable {
         Debug.println("create GraphicObject");
     }
 
+    public Dimension getDimension() {
+        return dimension;
+    }
+
     public Point getPoint() {
         Point ret = new Point(this.point);
         return ret;
+    }
+
+    public int getLife() {
+        return life;
     }
 
     private void setLocation(Point point) {
@@ -83,5 +91,10 @@ public abstract class GraphicObject implements Runnable {
     }
 
     public abstract void run();
+
+    public void die(){
+        ObjectManager.remove(this);
+
+    }
 }
 

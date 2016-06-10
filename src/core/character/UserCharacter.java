@@ -6,8 +6,10 @@ import java.util.Vector;
  * Created by JUNO_XPS on 2016-06-09.
  */
 public class UserCharacter extends GraphicObject{
+    private static final int USER = 0;
+    private static final int MONSTER = 1;
 
-    UserCharacter(int coordiX,int coordiY,int life,int monsterType){
+    public UserCharacter(int coordiX,int coordiY,int life,int monsterType){
         super(coordiX,coordiY,monsterType);
         this.life = life;
         this.name = "user";

@@ -1,5 +1,6 @@
 package ui.panel.nickname;
 
+import core.GameMain;
 import ui.panel.main.Main;
 import ui.swingmodule.Custom;
 
@@ -52,6 +53,8 @@ public class Nickname extends JPanel {
 
             this.main.getGamePanel().resetStopwatch();
             this.main.getGamePanel().startStopwatch();
+
+            GameMain.gameStart();
         }
     }
 }

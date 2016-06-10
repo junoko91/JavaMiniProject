@@ -1,18 +1,19 @@
 package core.character;
 
+import core.GameMain;
+
 import java.util.Vector;
 
 /**
  * Created by JUNO_XPS on 2016-06-09.
  */
 public class Monster extends GraphicObject {
-    UserCharacter user;
+    UserCharacter user = GameMain.getUser();
     int attackCycle=0;
 
-    Monster(int coordiX, int coordiY,String name, int monsterType, UserCharacter user) {
+    public Monster(int coordiX, int coordiY,String name, int monsterType) {
         super(coordiX, coordiY, monsterType);
         this.life = 1;
-        this.user = user;
         this.name = name;
     }
 
