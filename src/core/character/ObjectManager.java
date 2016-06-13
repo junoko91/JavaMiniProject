@@ -22,9 +22,7 @@ public class ObjectManager {
         objectList.remove(object);
     }
 
-    synchronized public static Vector<GraphicObject> getObjectListist(){
-        Vector<GraphicObject> ret = new Vector<GraphicObject>();
-        ret.addAll(objectList);
-        return ret;
+    synchronized public static Vector<GraphicObject> getObjectList(){
+        return objectList;
     }
 }

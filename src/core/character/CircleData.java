@@ -1,7 +1,5 @@
 package core.character;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Vector;
 
 /**
@@ -10,25 +8,26 @@ import java.util.Vector;
 public class CircleData {
     static boolean isLoaded = false;
     static Vector<Vector> vectors = new Vector<Vector>();
-    static Vector<Circle> monter1 = new Vector<Circle>();
-    static Vector<Circle> monter2 = new Vector<Circle>();
-    static Vector<Circle> monter3 = new Vector<Circle>();
-    static Vector<Circle> monter4 = new Vector<Circle>();
-    static Vector<Circle> monter5 = new Vector<Circle>();
-    static Vector<Circle> monter6 = new Vector<Circle>();
+    static Vector<Circle> character0 = new Vector<Circle>();
+    static Vector<Circle> character1 = new Vector<Circle>();
+    static Vector<Circle> character2 = new Vector<Circle>();
+    static Vector<Circle> character3 = new Vector<Circle>();
+    static Vector<Circle> character4 = new Vector<Circle>();
+    static Vector<Circle> character5 = new Vector<Circle>();
 
     static void load(){
         if(isLoaded){
             return;
         }
-        vectors.add(monter1);
-        vectors.add(monter2);
-        vectors.add(monter3);
-        vectors.add(monter4);
-        vectors.add(monter5);
-        vectors.add(monter6);
+        vectors.add(character0);
+        vectors.add(character1);
+
+
+        character0.add(new Circle(35,35,30));
+        character1.add(new Circle(35,35,32));
 
         //각각의 충돌 써클을 하드코딩으로 넣어논다.
+        isLoaded = true;
     }
 
     synchronized static Vector getVetor(int objectType){

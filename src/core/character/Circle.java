@@ -7,22 +7,31 @@ import java.awt.*;
  */
 public class Circle {
     Point refCoordinate;
-    Point coordinate;
+    Point realCoordinate;
     int radius;
 
-    Circle(int x, int y, int radius) {
-        refCoordinate.setLocation(x, y);
+    public Circle(int x,int y, int radius) {
+        refCoordinate = new Point(x,y);
         this.radius = radius;
     }
 
-    void setCircle(Point point) {
-        int x = (int) (refCoordinate.getX() + point.getX());
-        int y = (int) (refCoordinate.getY() + point.getY());
-        coordinate.setLocation(x, y);
+    public Circle(Point point, int radius) {
+        refCoordinate = new Point(point);
+        this.radius = radius;
     }
 
-    public Point getCoordinate() {
-        return coordinate;
+    void setCircle(Point objectPoint) {
+        int x = (int) (refCoordinate.getX() + objectPoint.getX());
+        int y = (int) (refCoordinate.getY() + objectPoint.getY());
+        realCoordinate = new Point(x, y);
+    }
+
+    public Point getRefCoordinate() {
+        return refCoordinate;
+    }
+
+    public Point getRealCoordinate() {
+        return realCoordinate;
     }
 
     public int getRadius() {
@@ -30,8 +39,8 @@ public class Circle {
     }
 
     public boolean check(Circle circle) {
-        double distance = Math.sqrt(Math.pow(coordinate.getX() - circle.getCoordinate().getX(), 2) + Math.pow(coordinate.getY() - circle.getCoordinate().getY(), 2));
-        double ref = Math.abs(this.radius - circle.getRadius());
+        double distance = Math.sqrt(Math.pow(realCoordinate.getX() - circle.getRealCoordinate().getX(), 2) + Math.pow(realCoordinate.getY() - circle.getRealCoordinate().getY(), 2));
+        double ref = Math.abs(this.radius + circle.getRadius());
 
         boolean ret = distance > ref ? false : true;
         return ret;

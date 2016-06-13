@@ -1,5 +1,6 @@
 package ui.panel.main;
 
+import core.GameMain;
 import ui.panel.game.Game;
 import ui.panel.game.Information;
 import ui.panel.menu.MyMenu;
@@ -14,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Main extends JFrame {
+    public static Main main;
     private MyMenu myMenu;
     private Game gamePanel;
     private Nickname nicknamePanel;
@@ -113,5 +115,8 @@ public class Main extends JFrame {
                 getMenuPanel().getNowPanel().setVisible(false);
             }
         }
+    }
+    public static void main(String[] args){
+        main = new Main();
     }
 }

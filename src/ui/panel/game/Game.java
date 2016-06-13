@@ -1,5 +1,6 @@
 package ui.panel.game;
 
+import core.GameMain;
 import ui.panel.main.Main;
 import ui.swingmodule.Custom;
 import wordmodule.FileManager;
@@ -217,7 +218,7 @@ public class Game extends JPanel {
                 getInput().setText(getInput().getText().substring(0, 30));
             }
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                if (getMonster().getText().equals(getInput().getText() + "\r")) {
+                /*if (getMonster().getText().equals(getInput().getText() + "\r")) {
                     score += 10;
                     information.setScore(score);
                     System.out.println("Correct!");
@@ -228,9 +229,20 @@ public class Game extends JPanel {
                         System.out.println("Clear!");
                 }
                 System.out.println(getMonster().getText());
+                getInput().setText("");*/
+
+                GameMain.getUser().attack(getInput().getText());
                 getInput().setText("");
-            } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-                setMonster(rd.getWordManager().popWord());
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                GameMain.getUser().moveRight();
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                GameMain.getUser().moveLeft();
+            } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                GameMain.getUser().moveUp();
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                GameMain.getUser().moveDown();
             }
         }
     }
