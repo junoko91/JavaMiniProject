@@ -21,16 +21,20 @@ public class UserCharacter extends GraphicObject{
     }
 
     public void moveUp(){
-        point.setLocation(point.getX(),point.getY()-step);
+        //point.setLocation(point.getX(),point.getY()-step);
+        this.move(0,-step);
     }
     public void moveDown(){
-        point.setLocation(point.getX(),point.getY()+step);
+        //point.setLocation(point.getX(),point.getY()+step);
+        this.move(0,step);
     }
     public void moveLeft(){
-        point.setLocation(point.getX()-step,point.getY());
+        //point.setLocation(point.getX()-step,point.getY());
+        this.move(-step,0);
     }
     public void moveRight(){
-        point.setLocation(point.getX()+step,point.getY());
+        //point.setLocation(point.getX()+step,point.getY());
+        this.move(step,0);
     }
 
     public void attack(String name){
