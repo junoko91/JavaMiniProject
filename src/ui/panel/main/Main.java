@@ -1,10 +1,9 @@
 package ui.panel.main;
 
-import core.GameMain;
 import ui.panel.game.Game;
-import ui.panel.game.Information;
 import ui.panel.menu.MyMenu;
 import ui.panel.nickname.Nickname;
+import ui.panel.rank.Rank;
 import ui.panel.start.Start;
 import ui.panel.word.Word;
 import wordmodule.FileManager;
@@ -21,6 +20,7 @@ public class Main extends JFrame {
     private Nickname nicknamePanel;
     private Start startPanel;
     private Word wordPanel;
+    private Rank rankPanel;
 
     private FileManager rd;
 
@@ -48,6 +48,10 @@ public class Main extends JFrame {
         return this.wordPanel;
     }
 
+    public Rank getRankPanel() {
+        return this.rankPanel;
+    }
+
     public Main() {
         rd = new FileManager();
 
@@ -56,12 +60,14 @@ public class Main extends JFrame {
 
         Container contentPane = getContentPane();
 
+        this.rankPanel = new Rank();
         this.wordPanel = new Word(this);
         this.myMenu = new MyMenu(this);
         this.gamePanel = new Game();
         this.nicknamePanel = new Nickname(this);
         this.startPanel = new Start(this);
 
+        contentPane.add(rankPanel).setVisible(false);
         contentPane.add(wordPanel).setVisible(false);
         contentPane.add(myMenu).setVisible(false);
         contentPane.add(gamePanel).setVisible(false);
@@ -92,7 +98,9 @@ public class Main extends JFrame {
 
     private class MenuListener extends MouseAdapter {
         public void mouseClicked(MouseEvent e) {
-            if (getWordPanel().isVisible()) {
+            if (getRankPanel().isVisible()) {
+                getMenuPanel().setNowPanel(getRankPanel());
+            } else if (getWordPanel().isVisible()) {
                 getMenuPanel().setNowPanel(getWordPanel());
             } else if (getGamePanel().isVisible()) {
                 getMenuPanel().setNowPanel(getGamePanel());
