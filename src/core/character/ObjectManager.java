@@ -8,6 +8,10 @@ import java.util.Vector;
 public class ObjectManager {
     static Vector<GraphicObject> objectList = new Vector<GraphicObject>();
 
+    public static void init(){
+        objectList.clear();
+    }
+
     synchronized public static void add(GraphicObject object) {
         if (objectList.contains(object))
             return;

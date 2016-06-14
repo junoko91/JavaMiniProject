@@ -112,6 +112,6 @@ public class Monster extends GraphicObject {
 
             sleep(delayTime);
         }
-
+        die();
     }
 }

@@ -33,7 +33,7 @@ public class MyMenu extends JPanel {
         JButton first = Custom.button(400, 300, 224, 40, "처음으로", 20);
         JButton option = Custom.button(400, 350, 224, 40, "Option", 20);
         JButton rank = Custom.button(400, 400, 224, 40, "Ranking", 20);
-        JButton exit = Custom.button(400, 450, 224, 40, "나가기", 20);
+        JButton exit = Custom.button(400, 450, 224, 40, "종료하기", 20);
 
         FirstListener firstListener = new FirstListener(main);
         OptionListener optionListener = new OptionListener();
@@ -64,8 +64,11 @@ public class MyMenu extends JPanel {
             this.main.getNicknamePanel().setVisible(false);
             this.main.getMenuPanel().setVisible(false);
             this.main.getGamePanel().setVisible(false);
+            GameMain.isPlaying = false;
         }
     }
+
+    
 
     private class OptionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {

@@ -1,5 +1,6 @@
 package ui.panel.game;
 
+import core.GameMain;
 import core.character.GraphicObject;
 
 import javax.swing.*;
@@ -11,11 +12,9 @@ import java.util.Vector;
  */
 public class Character extends JLabel implements Runnable {
     private static Vector<Character> repaintList = new Vector<Character>();
-    private boolean flag = false;
     private GraphicObject object;
-    private boolean status = true;
-    private Character character;
-
+    private static boolean flag = false;
+    private static Character character;
 
 
     public Character(GraphicObject object, Map map) {
@@ -36,29 +35,52 @@ public class Character extends JLabel implements Runnable {
         return object;
     }
 
+    synchronized public static void painting(){
+
+        flag = true;
+
+        while(GameMain.isPlaying){
+            for(int i=0;i<repaintList.size();i++){
+                character  = repaintList.get(i);
+                try {
+                    character.setLocation(character.getObject().getPoint());
+                }catch (NullPointerException e){
+                    character.setVisible(false);
+                    repaintList.remove(character);
+                }
+            }
+        }
+    }
+
+
     public void run() {
-        if(flag){
+        if (true) {
             return;
         }
+
+        
+
+        status = true;
+
 
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
         }
 
-        while (true) {
-            for(int i=0;i<repaintList.size();i++){
+        while (GameMain.isPlaying) {
+            for (int i = 0; i < repaintList.size(); i++) {
                 character = repaintList.get(i);
-                if(character.getObject().getLife()>0){
+                if (character.getObject().) {
                     character.setLocation(character.getObject().getPoint());
-                }
-                else{
-                    character.getObject().die();
-                    character.setVisible(false);
-                    repaintList.remove(character);
+                } else {
+                   repaintList.get(i).terminate();
                     break;
                 }
             }
         }
+        status = false;
+        this.terminate();
     }
+
 }

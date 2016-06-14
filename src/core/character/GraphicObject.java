@@ -32,6 +32,8 @@ public abstract class GraphicObject implements Runnable {
             circles.get(i).setCircle(this.point);
         }
 
+        ObjectManager.add(this);
+
         limitLine.setSize(GameData.limitLine);
         Debug.println("create GraphicObject");
     }

@@ -55,6 +55,7 @@ public class Nickname extends JPanel {
             this.main.getGamePanel().startStopwatch();
 
             GameMain.gameStart();
+            this.main.getNicknamePanel().getNickname().setText("");
         }
     }
 }
