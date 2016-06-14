@@ -11,7 +11,6 @@ import java.awt.*;
 public class Monster extends GraphicObject {
     private int delayTime = 20;
     UserCharacter user = GameMain.getUser();
-    Thread thread;
     private long lastAttackTime = 0;
 
     public Monster(int coordiX, int coordiY, String name, int monsterType) {
@@ -78,6 +77,8 @@ public class Monster extends GraphicObject {
     public void run() {
         int incX, incY;
         while (life > 0) {
+
+            this.blocking();
 
             if (isImpact()) {
                 return;

@@ -18,6 +18,7 @@ public abstract class GraphicObject implements Runnable {
     private Dimension limitLine = new Dimension(0, 0);
     protected Point point = new Point(0, 0);
     public Vector<Circle> circles = new Vector<Circle>(5);
+    protected Thread thread;
     int life = 1;
 
 
@@ -56,6 +57,10 @@ public abstract class GraphicObject implements Runnable {
         return life;
     }
 
+    public Thread getThread() {
+        return thread;
+    }
+
     public void setLocation(Point point) {
         this.point.setLocation(point);
         for (int i = 0; i < circles.size(); i++) {
@@ -63,13 +68,14 @@ public abstract class GraphicObject implements Runnable {
         }
     }
 
-    public void sleep(int millis){
-        try{
+    public void sleep(int millis) {
+        try {
             Thread.sleep(millis);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             Debug.println("자다가 인터럽트");
         }
     }
+
 
     public boolean check(Vector<Circle> circles) {
         for (int i = 0; i < this.circles.size(); i++) {
@@ -105,7 +111,7 @@ public abstract class GraphicObject implements Runnable {
             if (list.get(i).equals(this)) {
                 continue;
             } else if (list.get(i).check(tmpCircles)) {
-                if(list.get(i).name.equals("user")){
+                if (list.get(i).name.equals("user")) {
                     return true;
                 }
                 return false;
@@ -126,6 +132,25 @@ public abstract class GraphicObject implements Runnable {
     public void die() {
         ObjectManager.remove(this);
         GameMain.setScore(100);
+    }
+
+    public void wakeUp() {
+        synchronized (thread){
+            thread.interrupt();
+        }
+    }
+
+    public void blocking() {
+        if (GameMain.getPause()) {
+            try {
+                synchronized (this.thread) {
+                    thread.wait();
+                }
+            } catch (InterruptedException e) {
+                Debug.println("wakeup " + this.name);
+                return;
+            }
+        }
     }
 }
 

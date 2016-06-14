@@ -55,7 +55,7 @@ public class FileManager extends IOException {
                 this.channel.read(buffer);
                 buffer.flip(); //buffer에서 offset pointer를 0으로 돌려놓음
 
-                Charset charset = Charset.forName("MS949"); //읽어들이는 문자열의 인코딩타입
+                Charset charset = Charset.forName("UTF8"); //읽어들이는 문자열의 인코딩타입
                 CharBuffer charBuffer = charset.decode(buffer); //buffer에 있는 내용을 intellij가 쓰는 타입으로 디코딩
                 String[] stringArr = charBuffer.toString().split(seperator);
 

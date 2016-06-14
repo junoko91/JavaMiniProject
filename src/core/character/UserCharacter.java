@@ -16,7 +16,7 @@ public class UserCharacter extends GraphicObject{
         super(coordiX,coordiY,monsterType);
         this.life = life;
         this.name = "user";
-        Thread thread = new Thread(this);
+        thread = new Thread(this);
         thread.start();
     }
 
@@ -50,6 +50,8 @@ public class UserCharacter extends GraphicObject{
     public void run() {
         int incX=0, incY=0;
         while (life > 0) {
+
+            this.blocking();
 
             if (Math.random() < 0.2) {
                 incX = (int) ((Math.random() - 0.3) * 2);
