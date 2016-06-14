@@ -1,5 +1,6 @@
 package ui.panel.menu;
 
+import core.GameMain;
 import ui.panel.main.Main;
 import ui.swingmodule.Custom;
 

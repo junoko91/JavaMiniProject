@@ -1,5 +1,6 @@
 package ui.panel.main;
 
+import core.GameMain;
 import ui.panel.game.Game;
 import ui.panel.menu.MyMenu;
 import ui.panel.nickname.Nickname;
@@ -112,6 +113,7 @@ public class Main extends JFrame {
             }
 
             if (getMenuPanel().isVisible()) {
+                GameMain.resume();
                 getMenuPanel().getNowPanel().setVisible(true);
                 if (getGamePanel().isVisible()) {
                     getGamePanel().startStopwatch();
@@ -121,6 +123,7 @@ public class Main extends JFrame {
             } else {
                 getMenuPanel().setVisible(true);
                 getMenuPanel().getNowPanel().setVisible(false);
+                GameMain.pause();
             }
         }
     }
