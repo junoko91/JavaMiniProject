@@ -128,3 +128,6 @@ hs_err_pid*
 .classpath
 .project
 mini.eml
+mini2.iml
+mini-master.iml
+mini.iml
