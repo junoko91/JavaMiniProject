@@ -71,7 +71,7 @@ public class MyMenu extends JPanel {
 
     private class RankListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-//            main.getRankPanel().readFile();
+            main.getRankPanel().readFile();
             main.getRankPanel().setVisible(true);
             main.getRankPanel().setParentPanel(main.getMenuPanel());
 

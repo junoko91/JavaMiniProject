@@ -24,10 +24,10 @@ public class Start extends JPanel {
         JLabel subject = Custom.label(0, 20, 224, 40, "TYPIXEL", 40);
         subject.setForeground(Color.white);
         JButton start = Custom.button(0, 120, 224, 40, "Start", 20);
-        JButton word = Custom.button(0, 170, 224, 40, "�ܾ�", 20);
+        JButton word = Custom.button(0, 170, 224, 40, "???", 20);
         JButton option = Custom.button(0, 220, 224, 40, "Option", 20);
         JButton rank = Custom.button(0, 270, 224, 40, "Ranking", 20);
-        JButton exit = Custom.button(0, 320, 224, 40, "������", 20);
+        JButton exit = Custom.button(0, 320, 224, 40, "??????", 20);
 
         StartListener startListener = new StartListener();
         WordListener wordListener = new WordListener();
@@ -79,7 +79,7 @@ public class Start extends JPanel {
 
     private class RankListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-//            main.getRankPanel().readFile();
+            main.getRankPanel().readFile();
             main.getRankPanel().setVisible(true);
             main.getRankPanel().setParentPanel(main.getStartPanel());
 

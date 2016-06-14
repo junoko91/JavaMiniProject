@@ -12,7 +12,7 @@ class RankDataComparator implements Comparator<RankData> {
     public int compare(RankData o1, RankData o2) {
         int score1 =  o1.score;
         int score2 = o2.score;
-        return score1 > score2 ? -1 : (score1 == score2 ? 0 : 1); // descending Á¤·Ä.....
+        return score1 > score2 ? -1 : (score1 == score2 ? 0 : 1); // descending ï¿½ï¿½ï¿½ï¿½.....
     }
 }
 

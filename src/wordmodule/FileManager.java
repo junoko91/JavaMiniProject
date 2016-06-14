@@ -55,7 +55,7 @@ public class FileManager extends IOException {
                 this.channel.read(buffer);
                 buffer.flip(); //buffer에서 offset pointer를 0으로 돌려놓음
 
-                Charset charset = Charset.forName("MS949"); //읽어들이는 문자열의 인코딩타입
+                Charset charset = Charset.forName("UTF8"); //읽어들이는 문자열의 인코딩타입
                 CharBuffer charBuffer = charset.decode(buffer); //buffer에 있는 내용을 intellij가 쓰는 타입으로 디코딩
                 String[] stringArr = charBuffer.toString().split(seperator);
 
@@ -64,11 +64,14 @@ public class FileManager extends IOException {
                 }
 
                 last = stringArr[stringArr.length - 1];
-
+                String[] temps;
                 for (int i = 0; i < stringArr.length; i++) {
-                        name =  stringArr[i].split(" ")[0];
-                        score = Integer.parseInt(stringArr[i].split(" ")[1]);
-                        rankManager.pushData(name,score);
+                    temps = stringArr[i].split("\n");
+                    for (String temp: temps) {
+                        name = temp.split(" ")[0];
+                        score = Integer.parseInt(temp.split(" ")[1]);
+                        rankManager.pushData(name, score);
+                    }
                 }
             }
         } catch (IOException IOE) {
