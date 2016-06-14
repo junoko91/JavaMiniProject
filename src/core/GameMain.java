@@ -30,7 +30,7 @@ public class GameMain {
         return level;
     }
 
-    public static boolean getPause() {
+    public static boolean getStatus() {
         return pause;
     }
 

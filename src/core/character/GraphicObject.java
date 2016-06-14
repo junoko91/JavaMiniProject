@@ -141,7 +141,7 @@ public abstract class GraphicObject implements Runnable {
     }
 
     public void blocking() {
-        if (GameMain.getPause()) {
+        if (GameMain.getStatus()) {
             try {
                 synchronized (this.thread) {
                     thread.wait();
