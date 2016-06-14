@@ -14,9 +14,9 @@ import java.util.Vector;
 public abstract class GraphicObject implements Runnable {
     protected String name;
     private int objectType;
-    protected Dimension dimension = new Dimension(0,0);
-    private Dimension limitLine = new Dimension(0,0);
-    protected Point point = new Point(0,0);
+    protected Dimension dimension = new Dimension(0, 0);
+    private Dimension limitLine = new Dimension(0, 0);
+    protected Point point = new Point(0, 0);
     public Vector<Circle> circles = new Vector<Circle>(5);
     int life = 1;
 
@@ -63,10 +63,18 @@ public abstract class GraphicObject implements Runnable {
         }
     }
 
+    public void sleep(int millis){
+        try{
+            Thread.sleep(millis);
+        }catch (InterruptedException e){
+            Debug.println("ÀÚ´Ù°¡ ÀÎÅÍ·´Æ®");
+        }
+    }
+
     public boolean check(Vector<Circle> circles) {
         for (int i = 0; i < this.circles.size(); i++) {
             for (int j = 0; j < circles.size(); j++) {
-                if(this.circles.elementAt(i).check(circles.elementAt(j))){
+                if (this.circles.elementAt(i).check(circles.elementAt(j))) {
                     return true;
                 }
             }
@@ -78,16 +86,16 @@ public abstract class GraphicObject implements Runnable {
         Point tmpPoint = new Point();
         tmpPoint.setLocation(this.point.getX() + incX, this.point.getY() + incY);
 
-        if ((limitLine.getWidth() > tmpPoint.getX() + this.dimension.getWidth()
-                && limitLine.getHeight() > tmpPoint.getY() + this.dimension.getHeight()
-                && tmpPoint.getX() < 0 && tmpPoint.getY() < 0)) {
+        if ((limitLine.getWidth() >= tmpPoint.getX() + this.dimension.getWidth()
+                && limitLine.getHeight() >= tmpPoint.getY() + this.dimension.getHeight()
+                && tmpPoint.getX() >= 0 && tmpPoint.getY() >= 0) == false) {
             return false;
-        } //ï¿½Ê¾È¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½âº¸ï¿½ï¿½ Å©ï¿½ï¿½ return;
+        }
 
         Vector<Circle> tmpCircles = new Vector<Circle>(5);
 
         for (int i = 0; i < circles.size(); i++) {
-            tmpCircles.add(new Circle(circles.get(i).getRefCoordinate(),circles.get(i).getRadius()));
+            tmpCircles.add(new Circle(circles.get(i).getRefCoordinate(), circles.get(i).getRadius()));
             tmpCircles.get(i).setCircle(tmpPoint);
         }
 
@@ -97,7 +105,9 @@ public abstract class GraphicObject implements Runnable {
             if (list.get(i).equals(this)) {
                 continue;
             } else if (list.get(i).check(tmpCircles)) {
-                Debug.println(list.get(i).name);
+                if(list.get(i).name.equals("user")){
+                    return true;
+                }
                 return false;
             }
         }

@@ -62,11 +62,6 @@ public class UserCharacter extends GraphicObject{
                 this.attacked();
             }*/
             //gamescore 올리는 시퀀스
-            try{
-                Thread.sleep(100);
-            }catch(InterruptedException e){
-
-            }
         }
         Debug.println("game over");
     }
