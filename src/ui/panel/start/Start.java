@@ -12,21 +12,25 @@ import java.awt.event.ActionListener;
  * Created by junseokchoi on 2016. 5. 17..
  */
 public class Start extends JPanel {
+    private Main main;
+
     public Start(Main main) {
         setLayout(null);
         setBounds(400, 150, 224, 360);
         setBackground(new Color(21, 21, 23, 1));
 
+        this.main = main;
+
         JLabel subject = Custom.label(0, 20, 224, 40, "TYPIXEL", 40);
         subject.setForeground(Color.white);
         JButton start = Custom.button(0, 120, 224, 40, "Start", 20);
-        JButton word = Custom.button(0, 170, 224, 40, "´Ü¾î", 20);
+        JButton word = Custom.button(0, 170, 224, 40, "ï¿½Ü¾ï¿½", 20);
         JButton option = Custom.button(0, 220, 224, 40, "Option", 20);
         JButton rank = Custom.button(0, 270, 224, 40, "Ranking", 20);
-        JButton exit = Custom.button(0, 320, 224, 40, "³ª°¡±â", 20);
+        JButton exit = Custom.button(0, 320, 224, 40, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 20);
 
-        StartListener startListener = new StartListener(main);
-        WordListener wordListener = new WordListener(main);
+        StartListener startListener = new StartListener();
+        WordListener wordListener = new WordListener();
         OptionListener optionListener = new OptionListener();
         RankListener rankListener = new RankListener();
         ExitListener exitListener = new ExitListener();
@@ -46,17 +50,11 @@ public class Start extends JPanel {
     }
 
     private class StartListener implements ActionListener {
-        private Main main;
-
-        StartListener(Main main) {
-            this.main = main;
-        }
-
         public void actionPerformed(ActionEvent e) {
-            this.main.getNicknamePanel().setVisible(true);
-            this.main.getMenuPanel().setVisible(false);
-            this.main.getStartPanel().setVisible(false);
-            this.main.getGamePanel().setVisible(false);
+            main.getNicknamePanel().setVisible(true);
+            main.getMenuPanel().setVisible(false);
+            main.getStartPanel().setVisible(false);
+            main.getGamePanel().setVisible(false);
         }
     }
 
@@ -64,17 +62,12 @@ public class Start extends JPanel {
         private Main main;
         private JTextArea wordArea;
 
-        WordListener(Main main) {
-            this.main = main;
-
-        }
-
         public void actionPerformed(ActionEvent e) {
-            this.main.getWordPanel().readFile();
-            //this.main.getWordPanel().setAllWords();
+            main.getWordPanel().readFile();
+            //main.getWordPanel().setAllWords();
 
-            this.main.getWordPanel().setVisible(true);
-            this.main.getStartPanel().setVisible(false);
+            main.getWordPanel().setVisible(true);
+            main.getStartPanel().setVisible(false);
         }
     }
 
@@ -86,7 +79,12 @@ public class Start extends JPanel {
 
     private class RankListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+//            main.getRankPanel().readFile();
+            main.getRankPanel().setVisible(true);
+            main.getRankPanel().setParentPanel(main.getStartPanel());
 
+            main.getMenuPanel().setVisible(false);
+            main.getStartPanel().setVisible(false);
         }
     }
 
