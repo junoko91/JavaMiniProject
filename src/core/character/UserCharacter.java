@@ -1,5 +1,6 @@
 package core.character;
 
+import core.GameMain;
 import debug.Debug;
 
 import java.util.Vector;
@@ -42,6 +43,7 @@ public class UserCharacter extends GraphicObject{
         for(int i=0;i<list.size();i++){
             if(list.get(i).name.equals(name)){
                 list.get(i).attacked();
+                GameMain.setScore(100);
                 return;
             }
         }
@@ -53,18 +55,8 @@ public class UserCharacter extends GraphicObject{
 
             this.blocking();
 
-            if (Math.random() < 0.2) {
-                incX = (int) ((Math.random() - 0.3) * 2);
-                incY = (int) ((Math.random() - 0.3) * 2);
-            }
-
-            //this.move(incX, incY);
-
-          /*  if(Math.random()<0.005){
-                this.attacked();
-            }*/
-            //gamescore 올리는 시퀀스
         }
+        die();
         Debug.println("game over");
     }
 }

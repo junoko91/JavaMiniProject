@@ -9,6 +9,9 @@ public class ObjectManager {
     static Vector<GraphicObject> objectList = new Vector<GraphicObject>();
 
     public static void init(){
+        for(int i=0;i<objectList.size();i++){
+            objectList.get(i).die();
+        }
         objectList.clear();
     }
 

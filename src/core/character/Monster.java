@@ -2,6 +2,7 @@ package core.character;
 
 import core.GameMain;
 import debug.Debug;
+import ui.panel.main.Main;
 
 import java.awt.*;
 
@@ -13,10 +14,10 @@ public class Monster extends GraphicObject {
     UserCharacter user = GameMain.getUser();
     private long lastAttackTime = 0;
 
-    public Monster(int coordiX, int coordiY, String name, int monsterType) {
+    public Monster(int coordiX, int coordiY, int monsterType) {
         super(coordiX, coordiY, monsterType);
         this.life = 1;
-        this.name = name;
+        this.name = Main.main.getRd().getWordManager().popWord(GameMain.getLevel());
         thread = new Thread(this);
         thread.start();
     }
@@ -44,13 +45,13 @@ public class Monster extends GraphicObject {
 
     public void avoid(int count) {
         Point oldPoint = new Point();
-        int limit=0;
+        int limit = 0;
         int incX = 0, incY = 0;
 
         double random = Math.random();
 
         if (oldPoint.equals(this.point)) {
-            if(limit++ > 10){
+            if (limit++ > 10) {
                 return;
             }
         }
@@ -76,7 +77,7 @@ public class Monster extends GraphicObject {
 
     public void run() {
         int incX, incY;
-        while (life > 0) {
+        while (GameMain.isPlaying) {
 
             this.blocking();
 

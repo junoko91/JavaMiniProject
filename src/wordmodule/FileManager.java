@@ -37,7 +37,7 @@ public class FileManager extends IOException {
         buffer.clear();
 
         rankManager = new RankManager();
-        
+
         try {
             this.inputStream = new FileInputStream(rankPath);
             this.channel = this.inputStream.getChannel();
@@ -53,10 +53,10 @@ public class FileManager extends IOException {
             while (this.channel.size() != this.channel.position()) {
                 buffer.clear();
                 this.channel.read(buffer);
-                buffer.flip(); //bufferì—ì„œ offset pointerë¥¼ 0ìœ¼ë¡œ ëŒë ¤ë†“ìŒ
+                buffer.flip(); //buffer¿¡¼­ offset pointer¸¦ 0À¸·Î µ¹·Á³õÀ½
 
-                Charset charset = Charset.forName("UTF8"); //ì½ì–´ë“¤ì´ëŠ” ë¬¸ìì—´ì˜ ì¸ì½”ë”©íƒ€ì…
-                CharBuffer charBuffer = charset.decode(buffer); //bufferì— ìˆëŠ” ë‚´ìš©ì„ intellijê°€ ì“°ëŠ” íƒ€ì…ìœ¼ë¡œ ë””ì½”ë”©
+                Charset charset = Charset.forName("UTF8"); //ÀĞ¾îµéÀÌ´Â ¹®ÀÚ¿­ÀÇ ÀÎÄÚµùÅ¸ÀÔ
+                CharBuffer charBuffer = charset.decode(buffer); //buffer¿¡ ÀÖ´Â ³»¿ëÀ» intellij°¡ ¾²´Â Å¸ÀÔÀ¸·Î µğÄÚµù
                 String[] stringArr = charBuffer.toString().split(seperator);
 
                 if (!last.equals("")) {
@@ -64,17 +64,20 @@ public class FileManager extends IOException {
                 }
 
                 last = stringArr[stringArr.length - 1];
-
+                String[] temps;
                 for (int i = 0; i < stringArr.length; i++) {
-                        name =  stringArr[i].split(" ")[0];
-                        score = Integer.parseInt(stringArr[i].split(" ")[1]);
-                        rankManager.pushData(name,score);
+                    temps = stringArr[i].split("\n");
+                    for (String temp: temps) {
+                        name = temp.split(" ")[0];
+                        score = Integer.parseInt(temp.split(" ")[1]);
+                        rankManager.pushData(name, score);
+                    }
                 }
             }
         } catch (IOException IOE) {
             Debug.println("FileManager - reading error");
         }
-        
+
         isRankLoaded = true;
     }
 
@@ -102,14 +105,14 @@ public class FileManager extends IOException {
         try {
             String last = "";
 
-            //fileì„ channelì— ë‹´ê²¨ìˆë‹¤ê³  ë³´ë©´ë˜ê³  offsetì´ sizeë‘ ê°™ìœ¼ë©´ ëê¹Œì§€ ë‹¤ ì½ì€ê±°ì„
+            //fileÀ» channel¿¡ ´ã°ÜÀÖ´Ù°í º¸¸éµÇ°í offsetÀÌ size¶û °°À¸¸é ³¡±îÁö ´Ù ÀĞÀº°ÅÀÓ
             while (this.channel.size() != this.channel.position()) {
                 buffer.clear();
                 this.channel.read(buffer);
-                buffer.flip(); //bufferì—ì„œ offset pointerë¥¼ 0ìœ¼ë¡œ ëŒë ¤ë†“ìŒ
+                buffer.flip(); //buffer¿¡¼­ offset pointer¸¦ 0À¸·Î µ¹·Á³õÀ½
 
-                Charset charset = Charset.forName("MS949"); //ì½ì–´ë“¤ì´ëŠ” ë¬¸ìì—´ì˜ ì¸ì½”ë”©íƒ€ì…
-                CharBuffer charBuffer = charset.decode(buffer); //bufferì— ìˆëŠ” ë‚´ìš©ì„ intellijê°€ ì“°ëŠ” íƒ€ì…ìœ¼ë¡œ ë””ì½”ë”©
+                Charset charset = Charset.forName("MS949"); //ÀĞ¾îµéÀÌ´Â ¹®ÀÚ¿­ÀÇ ÀÎÄÚµùÅ¸ÀÔ
+                CharBuffer charBuffer = charset.decode(buffer); //buffer¿¡ ÀÖ´Â ³»¿ëÀ» intellij°¡ ¾²´Â Å¸ÀÔÀ¸·Î µğÄÚµù
                 String[] stringArr = charBuffer.toString().split(seperator);
 
                 if (!last.equals("")) {

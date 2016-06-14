@@ -3,6 +3,7 @@ package core.character;
 import core.GameMain;
 import core.gamedata.GameData;
 import debug.Debug;
+import ui.panel.main.Main;
 
 import java.awt.*;
 import java.util.Vector;
@@ -35,7 +36,12 @@ public abstract class GraphicObject implements Runnable {
         ObjectManager.add(this);
 
         limitLine.setSize(GameData.limitLine);
+
         Debug.println("create GraphicObject");
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Dimension getDimension() {
@@ -127,13 +133,15 @@ public abstract class GraphicObject implements Runnable {
 
     synchronized public void attacked() {
         this.life--;
+        if(this.life<=0){
+            this.die();
+        }
     }
 
     public abstract void run();
 
     public void die() {
         ObjectManager.remove(this);
-        GameMain.setScore(100);
     }
 
     public void wakeUp() {
