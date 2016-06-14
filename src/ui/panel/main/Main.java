@@ -1,8 +1,6 @@
 package ui.panel.main;
 
-import core.GameMain;
 import ui.panel.game.Game;
-import ui.panel.game.Information;
 import ui.panel.menu.MyMenu;
 import ui.panel.nickname.Nickname;
 import ui.panel.start.Start;

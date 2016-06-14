@@ -14,6 +14,14 @@ class RankData{
         this.nickName = nickName;
         this.score = score;
     }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
 }
 
 class RankDataComparator implements Comparator<RankData> {

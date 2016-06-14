@@ -5,7 +5,6 @@ import core.gamedata.GameData;
 import debug.Debug;
 
 import java.awt.*;
-import java.awt.print.Printable;
 import java.util.Vector;
 
 /**
@@ -83,7 +82,7 @@ public abstract class GraphicObject implements Runnable {
                 && limitLine.getHeight() > tmpPoint.getY() + this.dimension.getHeight()
                 && tmpPoint.getX() < 0 && tmpPoint.getY() < 0)) {
             return false;
-        } //¸Ê¾È¿¡¼­ÀÇ °¡´ÉÇÑ Å©±âº¸´Ù Å©¸é return;
+        } //ï¿½Ê¾È¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½âº¸ï¿½ï¿½ Å©ï¿½ï¿½ return;
 
         Vector<Circle> tmpCircles = new Vector<Circle>(5);
 

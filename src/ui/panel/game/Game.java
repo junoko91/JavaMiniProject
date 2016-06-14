@@ -1,7 +1,6 @@
 package ui.panel.game;
 
 import core.GameMain;
-import ui.panel.main.Main;
 import ui.swingmodule.Custom;
 import wordmodule.FileManager;
 
