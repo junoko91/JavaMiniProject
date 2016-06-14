@@ -20,5 +20,12 @@ public class RankManager {
         rankingList.put(nickName, score);
     }
 
+    public int getData(String nickName) {
+        if(rankingList.containsKey(nickName)){
+            return rankingList.get(nickName);
+        }
+         return -1;
+    }
+
 
 }
