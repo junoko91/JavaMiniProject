@@ -63,7 +63,6 @@ public class WordManager {
     }
 
     public String getAllWords() {
-
         StringBuffer allWords = new StringBuffer();
 
         for (int i = 0; i < instanceVector.size(); i++) {
@@ -73,6 +72,10 @@ public class WordManager {
         }
 
         return allWords.toString();
+    }
+
+    public void init(){
+        instanceVector.clear();
     }
 
 
