@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 public class Word extends JPanel {
     private FileManager rd;
     private JTextArea wordArea;
-
+    private Main main;
     public void setWordArea(String word) {
         this.wordArea.setText(word);
     }
@@ -37,15 +37,17 @@ public class Word extends JPanel {
         setBounds(400, 150, 224, 385);
         setBackground(new Color(21, 21, 23, 1));
 
+        this.main = main;
+
         JLabel subject = Custom.label(0, 0, 224, 40, "Word", 40);
         subject.setForeground(Color.white);
         this.wordArea = new JTextArea("");
         JScrollPane scrollPane = Custom.scrollPane(this.wordArea, 2, 60, 220, 224);
 
-        JButton change = Custom.button(0, 295, 224, 40, "¼öÁ¤ÇÏ±â ", 20);
+        JButton change = Custom.button(0, 295, 224, 40, "ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ", 20);
         change.addActionListener(new ChangeListener());
-        JButton back = Custom.button(0, 345, 224, 40, "µÚ·Î°¡±â", 20);
-        back.addActionListener(new MainListener(main));
+        JButton back = Custom.button(0, 345, 224, 40, "ï¿½Ú·Î°ï¿½ï¿½ï¿½", 20);
+        back.addActionListener(new MainListener());
 
         add(subject);
         add(scrollPane);
@@ -54,14 +56,8 @@ public class Word extends JPanel {
     }
 
     private class MainListener implements ActionListener {
-        private Main main;
-
-        MainListener(Main main) {
-            this.main = main;
-        }
-
         public void actionPerformed(ActionEvent e) {
-            this.main.getStartPanel().setVisible(true);
+            main.getStartPanel().setVisible(true);
             setVisible(false);
         }
     }
