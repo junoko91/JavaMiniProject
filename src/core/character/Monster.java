@@ -10,7 +10,7 @@ import java.awt.*;
  * Created by JUNO_XPS on 2016-06-09.
  */
 public class Monster extends GraphicObject {
-    private int delayTime = 20;
+    private int delayTime = 70 / GameMain.getLevel();
     UserCharacter user = GameMain.getUser();
     private long lastAttackTime = 0;
 
@@ -27,7 +27,7 @@ public class Monster extends GraphicObject {
     }
 
     public boolean isImpact() {
-        if (user.check(circles)) {
+        if (user.check(circles,2)) {
             attack();
             return true;
         }
@@ -35,7 +35,7 @@ public class Monster extends GraphicObject {
     }
 
     synchronized public void attack() {
-        if (System.currentTimeMillis() - this.lastAttackTime > 700) {
+        if (System.currentTimeMillis() - this.lastAttackTime > 800) {
             user.attacked();
             System.out.println(user.getLife());
             Debug.println("attack");
@@ -56,7 +56,7 @@ public class Monster extends GraphicObject {
             }
         }
 
-        oldPoint = this.point;
+        oldPoint.setLocation(this.point);
 
         if (random > 0.75) {
             incX = 1;
@@ -81,9 +81,7 @@ public class Monster extends GraphicObject {
 
             this.blocking();
 
-            if (isImpact()) {
-                return;
-            }
+            isImpact();
 
             if (this.point.getX() > user.getPoint().getX()) {
                 incX = -1;

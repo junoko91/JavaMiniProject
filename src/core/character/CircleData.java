@@ -23,8 +23,8 @@ public class CircleData {
         vectors.add(character1);
 
 
-        character0.add(new Circle(35,35,30));
-        character1.add(new Circle(35,35,32));
+        character0.add(new Circle(35,35,31));
+        character1.add(new Circle(35,35,31));
 
         //각각의 충돌 써클을 하드코딩으로 넣어논다.
         isLoaded = true;

@@ -16,11 +16,11 @@ public class Map extends JPanel {
     protected void paintComponent(Graphics g)
     {
         BufferedImage image = null;
-        /*try {
-            image = ImageIO.read(new File("./src/resource/background.png"));
+        try {
+            image = ImageIO.read(new File("backgroundmap.jpg"));
         } catch (IOException e) {
             System.err.print("이미지를 열지 못했습니다.");
-        }*/
+        }
 
         super.paintComponent(g);
         if (image != null) {

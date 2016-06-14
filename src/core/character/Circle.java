@@ -42,7 +42,15 @@ public class Circle {
         double distance = Math.sqrt(Math.pow(realCoordinate.getX() - circle.getRealCoordinate().getX(), 2) + Math.pow(realCoordinate.getY() - circle.getRealCoordinate().getY(), 2));
         double ref = Math.abs(this.radius + circle.getRadius());
 
-        boolean ret = distance > ref ? false : true;
+        boolean ret = distance >= ref ? false : true;
+        return ret;
+    }
+
+    public boolean check(Circle circle,int opt) {
+        double distance = Math.sqrt(Math.pow(realCoordinate.getX() - circle.getRealCoordinate().getX(), 2) + Math.pow(realCoordinate.getY() - circle.getRealCoordinate().getY(), 2));
+        double ref = Math.abs(this.radius + circle.getRadius());
+
+        boolean ret = distance-opt >= ref ? false : true;
         return ret;
     }
 }

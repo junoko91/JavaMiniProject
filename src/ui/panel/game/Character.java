@@ -18,7 +18,8 @@ public class Character extends JLabel implements Runnable {
     private static boolean flag = false;
     private static Character character;
     private GraphicObject object;
-    private JLabel name ;
+    private JLabel name;
+    private boolean isRemoved = false;
 
 
     public Character(GraphicObject object, Map map) {
@@ -30,19 +31,18 @@ public class Character extends JLabel implements Runnable {
         setSize(object.getDimension());
         setLocation(object.getPoint());
         this.setIcon(icon);
-        /*this.setBackground(Color.CYAN);
-        this.setOpaque(true);*/
 
         name = new JLabel(object.getName());
-        if(name.getText().equals("user")){
+        if (name.getText().equals("user")) {
             name.setText("");
         }
         name.setHorizontalAlignment(SwingConstants.CENTER);
         name.setVerticalAlignment(SwingConstants.CENTER);
-        name.setFont(new Font("±¼¸²", Font.PLAIN, 20));
+        name.setFont(new Font("±¼¸²", Font.BOLD, 20));
+        name.setForeground(Color.RED);
         name.setVisible(true);
-        name.setSize(200,30);
-        name.setLocation(this.getX()+this.getWidth()/2 - name.getWidth()/2,this.getY()-30);
+        name.setSize(200, 30);
+        name.setLocation(this.getX() + this.getWidth() / 2 - name.getWidth() / 2, this.getY() - 30);
 
         map.add(name);
         map.add(this);
@@ -53,9 +53,9 @@ public class Character extends JLabel implements Runnable {
         repaint();
     }
 
-    public void setLocations(Point point){
+    public void setLocations(Point point) {
         this.setLocation(point);
-        name.setLocation(this.getX()+this.getWidth()/2 - name.getWidth()/2,this.getY()-30);
+        name.setLocation(this.getX() + this.getWidth() / 2 - name.getWidth() / 2, this.getY() - 30);
         repaint();
     }
 
@@ -64,14 +64,21 @@ public class Character extends JLabel implements Runnable {
     }
 
     public void terminate() {
+        if(isRemoved){
+            return;
+        }
         this.setVisible(false);
+        this.name.setVisible(false);
         synchronized (this) {
             this.getParent().remove(this);
+            this.getParent().remove(this.name);
         }
+        repaintList.remove(character);
+        isRemoved = true;
     }
 
     synchronized public static void painting() {
-        if(flag){
+        if (flag) {
             return;
         }
 
@@ -81,24 +88,28 @@ public class Character extends JLabel implements Runnable {
             for (int i = 0; i < repaintList.size(); i++) {
                 character = repaintList.get(i);
                 try {
-                    if(character.getObject().getLife()>0) {
+                    if (character.getObject().getLife() > 0) {
                         character.setLocations(character.getObject().getPoint());
-                    }
-                    else{
+                    } else {
                         character.terminate();
-                        repaintList.remove(character);
                     }
                 } catch (NullPointerException e) {
-                    character.terminate();
-                    repaintList.remove(character);
-                    break;
+
                 }
             }
+
+            try{
+                Thread.sleep(30);
+            }catch (InterruptedException e){
+
+            }
+
         }
 
         for (int i = 0; i < repaintList.size(); i++) {
             character = repaintList.get(i);
             character.terminate();
+            i=0;
         }
         repaintList.clear();
         flag = false;
@@ -107,7 +118,7 @@ public class Character extends JLabel implements Runnable {
 
 
     public void run() {
-        if(flag){
+        if (flag) {
             return;
         }
         painting();

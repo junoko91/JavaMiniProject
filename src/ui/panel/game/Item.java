@@ -21,8 +21,8 @@ public class Item extends JPanel {
         JLabel item3 = Custom.label(120, 0, 60, 40, "item3", 20);
         item3.setBorder(new LineBorder(Color.RED));
 
-        add(item1);
+        /*add(item1);
         add(item2);
-        add(item3);
+        add(item3);*/
     }
 }

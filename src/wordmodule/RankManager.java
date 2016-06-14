@@ -1,6 +1,8 @@
 package wordmodule;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Vector;
 
 /**
  * Created by rdp on 2016-06-14.

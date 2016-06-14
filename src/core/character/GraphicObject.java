@@ -3,7 +3,6 @@ package core.character;
 import core.GameMain;
 import core.gamedata.GameData;
 import debug.Debug;
-import ui.panel.main.Main;
 
 import java.awt.*;
 import java.util.Vector;
@@ -96,6 +95,17 @@ public abstract class GraphicObject implements Runnable {
         return false;
     }
 
+    public boolean check(Vector<Circle> circles,int opt) {
+        for (int i = 0; i < this.circles.size(); i++) {
+            for (int j = 0; j < circles.size(); j++) {
+                if (this.circles.elementAt(i).check(circles.elementAt(j),opt)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean move(int incX, int incY) {
         Point tmpPoint = new Point();
         tmpPoint.setLocation(this.point.getX() + incX, this.point.getY() + incY);
@@ -142,6 +152,7 @@ public abstract class GraphicObject implements Runnable {
 
     public void die() {
         ObjectManager.remove(this);
+        life=0;
     }
 
     public void wakeUp() {
