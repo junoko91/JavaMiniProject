@@ -147,5 +147,9 @@ public class FileManager extends IOException {
         FileManager rd = new FileManager();
 
         System.out.println(rd.getWordManager().getAllWords());
+
+        for(int i=0;i<rd.getRankManager().getAllData().size();i++){
+            System.out.println(rd.getRankManager().getAllData().get(i).nickName+" " + rd.getRankManager().getAllData().get(i).score);
+        }
     }
 }
