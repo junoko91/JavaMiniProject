@@ -53,7 +53,7 @@ public class GameMain {
         ObjectManager.add(user);
         new Character(user,map);
 
-        for(int i=0;i<20;i++){
+        for(int i=0;i<5;i++){
             //몬스터 생성
             monster = new Monster(100*i,50,"monster"+Integer.toString(i),MONSTER);
             ObjectManager.add(monster);

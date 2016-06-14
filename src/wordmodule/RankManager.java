@@ -6,23 +6,7 @@ import java.util.*;
  * Created by rdp on 2016-06-14.
  */
 
-class RankData{
-    String nickName = "";
-    int score;
 
-    RankData(String nickName,int score){
-        this.nickName = nickName;
-        this.score = score;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-}
 
 class RankDataComparator implements Comparator<RankData> {
     public int compare(RankData o1, RankData o2) {
