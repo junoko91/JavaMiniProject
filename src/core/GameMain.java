@@ -32,13 +32,18 @@ public class GameMain {
     }
 
     public static void initGame() {
+        isPlaying = false;
         resume();
+        try{
+            Thread.sleep(300);
+        }catch (InterruptedException e){}
         ObjectManager.init();
         level = 5;
         monster = null;
         user = null;
         score = 0;
         setScore(0);
+        isPlaying = true;
     }
 
     public static boolean getStatus() {
@@ -91,10 +96,11 @@ public class GameMain {
 
     public static void gameOver() {
         pause();
-        isPlaying = false;
+        isPlaying=false;
         Main.main.getRd().getRankManager().pushData(getUser().getNickName(),score);
         Main.main.getRd().writeRanking();
-
+        /*Main.main.getGamePanel().setVisible(false);
+        Main.main.getStartPanel().setVisible(true);*/
 
         //Á¡¼öÆÇ ¶ç¿ì°í
         //·©Å· ¤¡¤¡
@@ -104,11 +110,12 @@ public class GameMain {
     public static void gameStart() {
         initGame();
 
+        pause = false;
         isPlaying = true;
 
         map = uiMain.getGamePanel().getMapPanel();
 
-        user = new UserCharacter(100, 300, 1, USER);
+        user = new UserCharacter(100, 300, 5, USER);
         new Character(user, map);
 
         for (int i = 0; i < 3; i++) {

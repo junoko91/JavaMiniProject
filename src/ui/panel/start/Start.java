@@ -17,7 +17,7 @@ public class Start extends JPanel {
         setBounds(400, 150, 224, 360);
         setBackground(new Color(21, 21, 23, 1));
 
-        JLabel subject = Custom.label(0, 20, 224, 40, "TYPIXEL", 40);
+        JLabel subject = Custom.label(0, 20, 224, 40, "TYPETOON", 40);
         subject.setForeground(Color.white);
         JButton start = Custom.button(0, 120, 224, 40, "Start", 20);
         JButton word = Custom.button(0, 170, 224, 40, "´Ü¾î", 20);

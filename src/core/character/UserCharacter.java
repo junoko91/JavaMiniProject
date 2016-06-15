@@ -64,7 +64,7 @@ public class UserCharacter extends GraphicObject{
 
     public void run() {
         int incX=0, incY=0;
-        while (life > 0) {
+        while (life > 0 && GameMain.isPlaying) {
             this.blocking();
         }
         die();

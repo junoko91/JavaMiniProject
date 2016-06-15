@@ -56,7 +56,7 @@ public class Main extends JFrame {
     public Main() {
         rd = new FileManager();
 
-        setTitle("TYPIXEL");
+        setTitle("TYPETOON");
         setLayout(null);
 
         Container contentPane = getContentPane();
