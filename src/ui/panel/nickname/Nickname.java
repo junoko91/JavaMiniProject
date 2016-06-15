@@ -46,8 +46,9 @@ public class Nickname extends JPanel {
         public void actionPerformed(ActionEvent e) {
             this.main.getGamePanel().readFile();
             //this.main.getGamePanel().setMonster(this.main.getRd().getWordManager().popWord());
-
-            this.main.getGamePanel().setNickname(getNickname().getText());
+            String text = getNickname().getText();
+            this.main.getGamePanel().setNickname(text);
+            GameMain.getUser().setNickName(text);
             this.main.getGamePanel().setVisible(true);
             this.main.getNicknamePanel().setVisible(false);
 

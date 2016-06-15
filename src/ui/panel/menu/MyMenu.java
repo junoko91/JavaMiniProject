@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
  */
 public class MyMenu extends JPanel {
     private JPanel nowPanel = null;
+    private Main main;
 
     public void setNowPanel(JPanel nowPanel) {
         this.nowPanel = nowPanel;
@@ -68,6 +69,8 @@ public class MyMenu extends JPanel {
         }
     }
 
+
+
     
 
     private class OptionListener implements ActionListener {
@@ -78,7 +81,12 @@ public class MyMenu extends JPanel {
 
     private class RankListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            main.getRankPanel().readFile();
+            main.getRankPanel().setVisible(true);
+            main.getRankPanel().setParentPanel(main.getMenuPanel());
 
+            main.getMenuPanel().setVisible(false);
+            main.getStartPanel().setVisible(false);
         }
     }
 

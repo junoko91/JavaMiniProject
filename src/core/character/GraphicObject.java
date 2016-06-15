@@ -165,6 +165,7 @@ public abstract class GraphicObject implements Runnable {
         if (GameMain.getStatus()) {
             try {
                 synchronized (this.thread) {
+                    Debug.println("sleep  " + this.name);
                     thread.wait();
                 }
             } catch (InterruptedException e) {

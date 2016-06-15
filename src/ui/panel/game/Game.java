@@ -242,6 +242,8 @@ public class Game extends JPanel {
                 GameMain.getUser().moveUp();
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 GameMain.getUser().moveDown();
+            }else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                GameMain.getUser().lifeUP();
             }
         }
     }

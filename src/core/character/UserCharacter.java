@@ -9,11 +9,22 @@ import java.util.Vector;
  * Created by JUNO_XPS on 2016-06-09.
  */
 public class UserCharacter extends GraphicObject{
-    private static final int step = 8;
-    private static final int USER = 0;
-    private static final int MONSTER = 1;
+    private static final int step = 10;
+    private static String nickName = "";
 
-    public UserCharacter(int coordiX,int coordiY,int life,int monsterType){
+    public static void setNickName(String nick){
+        nickName = nick;
+    }
+
+    public static String getNickName() {
+        return nickName;
+    }
+
+    public void lifeUP(){
+        life+=5;
+    }
+
+    public UserCharacter(int coordiX, int coordiY, int life, int monsterType){
         super(coordiX,coordiY,monsterType);
         this.life = life;
         this.name = "user";
@@ -54,10 +65,10 @@ public class UserCharacter extends GraphicObject{
     public void run() {
         int incX=0, incY=0;
         while (life > 0) {
-
             this.blocking();
         }
         die();
+        GameMain.gameOver();
         Debug.println("game over");
     }
 }

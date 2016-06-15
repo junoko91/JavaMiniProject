@@ -11,7 +11,7 @@ import ui.panel.main.Main;
 /**
  * Created by JUNO_XPS on 2016-05-19.
  */
-public class GameMain{
+public class GameMain {
     private static Main uiMain = Main.main;
     private static Map map;
     private static final int USER = 0;
@@ -31,7 +31,7 @@ public class GameMain{
         return level;
     }
 
-    public static void initGame(){
+    public static void initGame() {
         resume();
         ObjectManager.init();
         level = 5;
@@ -45,7 +45,7 @@ public class GameMain{
         return pause;
     }
 
-    public static void pause() {
+    synchronized public static void pause() {
         pause = true;
     }
 
@@ -61,12 +61,13 @@ public class GameMain{
         return user;
     }
 
-    public static void levelUP(){
+    public static void levelUP() {
         level++;
+        user.lifeUP();
     }
 
     synchronized public static void setScore(int score) {
-        if(GameMain.score != 0 &&GameMain.score%200==0){
+        if (GameMain.score != 0 && GameMain.score % 500 == 0) {
             levelUP();
             Debug.println("LEVELUP");
             System.out.println(level);
@@ -79,20 +80,24 @@ public class GameMain{
         }
     }
 
-    public static void makeMonster(){
-        while(monsterCount<level) {
-            monster = new Monster((int)(Math.random()*800),(int)(Math.random()*500), MONSTER);
+    public static void makeMonster() {
+        while (monsterCount < level) {
+            monster = new Monster((int) (Math.random() * 800), (int) (Math.random() * 500), MONSTER);
             new Character(monster, map);
             monsterCount++;
         }
     }
 
 
-    public static void gameOver(){
+    public static void gameOver() {
         pause();
+        isPlaying = false;
+        Main.main.getRd().getRankManager().pushData(getUser().getNickName(),score);
+        Main.main.getRd().writeRanking();
+
+
         //점수판 띄우고
         //랭킹 ㄱㄱ
-        
     }
 
 
@@ -103,10 +108,10 @@ public class GameMain{
 
         map = uiMain.getGamePanel().getMapPanel();
 
-        user = new UserCharacter(100, 300, 300, USER);
+        user = new UserCharacter(100, 300, 1, USER);
         new Character(user, map);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             //몬스터 생성
             monster = new Monster(100 * i, 50, MONSTER);
             new Character(monster, map);

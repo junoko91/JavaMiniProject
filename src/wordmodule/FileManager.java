@@ -3,11 +3,13 @@ package wordmodule;
 import debug.Debug;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.util.Vector;
 
 /**
  * Created by JUNO_XPS on 2016-05-13.
@@ -18,6 +20,7 @@ public class FileManager extends IOException {
     private final String seperator = "\r\n";
     private FileChannel channel;
     private FileInputStream inputStream;
+    private FileOutputStream outputStream;
     private WordManager wordManager;
     private RankManager rankManager;
     private boolean isWordLoaded = false;
@@ -55,7 +58,7 @@ public class FileManager extends IOException {
                 this.channel.read(buffer);
                 buffer.flip(); //buffer에서 offset pointer를 0으로 돌려놓음
 
-                Charset charset = Charset.forName("UTF8"); //읽어들이는 문자열의 인코딩타입
+                Charset charset = Charset.forName("MS949"); //읽어들이는 문자열의 인코딩타입
                 CharBuffer charBuffer = charset.decode(buffer); //buffer에 있는 내용을 intellij가 쓰는 타입으로 디코딩
                 String[] stringArr = charBuffer.toString().split(seperator);
 
@@ -67,7 +70,7 @@ public class FileManager extends IOException {
                 String[] temps;
                 for (int i = 0; i < stringArr.length; i++) {
                     temps = stringArr[i].split("\n");
-                    for (String temp: temps) {
+                    for (String temp : temps) {
                         name = temp.split(" ")[0];
                         score = Integer.parseInt(temp.split(" ")[1]);
                         rankManager.pushData(name, score);
@@ -79,6 +82,50 @@ public class FileManager extends IOException {
         }
 
         isRankLoaded = true;
+    }
+
+    public void writeRanking() {
+        if (!isRankLoaded) {
+            loadRanking();
+        }
+
+        Vector<RankData> list = rankManager.getAllData();
+
+        ByteBuffer buffer = ByteBuffer.allocateDirect(81920);
+
+        try {
+            this.outputStream = new FileOutputStream(rankPath);
+            this.channel = this.outputStream.getChannel();
+        } catch (IOException IOE) {
+            Debug.println("FileManager - file open error");
+        }
+
+
+        try {
+            String tmp = "";
+            buffer.clear();
+           // buffer.flip(); //buffer에서 offset pointer를 0으로 돌려놓음
+
+            for (int i = 0; i < list.size(); i++) {
+                if (buffer.capacity() - buffer.position() > 100) {
+                    tmp = list.get(i).getNickName() + " " + Integer.toString(list.get(i).getScore()) + "\r\n";
+                    buffer.put(tmp.getBytes("MS949"));
+                } else {
+                    buffer.flip();
+                    channel.write(buffer);
+                    buffer.clear();
+                }
+            }
+            buffer.flip();
+            channel.write(buffer);
+            buffer.clear();
+            channel.close();
+            outputStream.close();
+        } catch (IOException IOE) {
+            Debug.println("FileManager - reading error");
+        }
+
+
     }
 
     public void loadWords() {
@@ -119,7 +166,7 @@ public class FileManager extends IOException {
                     stringArr[0] = last + stringArr[0];
                 }
 
-                last = stringArr[stringArr.length-1];
+                last = stringArr[stringArr.length - 1];
 
                 for (int i = 0; i < stringArr.length; i++) {
                     this.wordManager.pushWord(stringArr[i]);
@@ -151,8 +198,8 @@ public class FileManager extends IOException {
 
         System.out.println(rd.getWordManager().getAllWords());
 
-        for(int i=0;i<rd.getRankManager().getAllData().size();i++){
-            System.out.println(rd.getRankManager().getAllData().get(i).nickName+" " + rd.getRankManager().getAllData().get(i).score);
+        for (int i = 0; i < rd.getRankManager().getAllData().size(); i++) {
+            System.out.println(rd.getRankManager().getAllData().get(i).nickName + " " + rd.getRankManager().getAllData().get(i).score);
         }
     }
 }

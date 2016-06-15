@@ -17,6 +17,7 @@ public class Character extends JLabel implements Runnable {
     private static Vector<Character> repaintList = new Vector<Character>();
     private static boolean flag = false;
     private static Character character;
+    private static Character userCharacter;
     private GraphicObject object;
     private JLabel name;
     private boolean isRemoved = false;
@@ -24,7 +25,23 @@ public class Character extends JLabel implements Runnable {
 
     public Character(GraphicObject object, Map map) {
         FileManager rd = Main.main.getRd();
-        ImageIcon icon = new ImageIcon("char.png");
+
+        String path = "char";
+
+        if (Math.random() > 0.75) {
+            path += "0.png";
+        }
+       else  if (Math.random() > 0.75) {
+            path += "1.png";
+        }
+        else  if (Math.random() > 0.75) {
+            path += "2.png";
+        }
+        else{
+            path += "3.png";
+        }
+
+        ImageIcon icon = new ImageIcon(path);
 
         this.object = object;
         setVisible(true);
@@ -33,13 +50,16 @@ public class Character extends JLabel implements Runnable {
         this.setIcon(icon);
 
         name = new JLabel(object.getName());
-        if (name.getText().equals("user")) {
-            name.setText("");
-        }
+
         name.setHorizontalAlignment(SwingConstants.CENTER);
         name.setVerticalAlignment(SwingConstants.CENTER);
         name.setFont(new Font("±¼¸²", Font.BOLD, 20));
         name.setForeground(Color.RED);
+
+        if (name.getText().equals("user")) {
+            name.setForeground(Color.YELLOW);
+            userCharacter = this;
+        }
         name.setVisible(true);
         name.setSize(200, 30);
         name.setLocation(this.getX() + this.getWidth() / 2 - name.getWidth() / 2, this.getY() - 30);
@@ -56,6 +76,7 @@ public class Character extends JLabel implements Runnable {
     public void setLocations(Point point) {
         this.setLocation(point);
         name.setLocation(this.getX() + this.getWidth() / 2 - name.getWidth() / 2, this.getY() - 30);
+        userCharacter.name.setText(Integer.toString(userCharacter.getObject().getLife()));
         repaint();
     }
 
@@ -64,7 +85,7 @@ public class Character extends JLabel implements Runnable {
     }
 
     public void terminate() {
-        if(isRemoved){
+        if (isRemoved) {
             return;
         }
         this.setVisible(false);
@@ -98,9 +119,9 @@ public class Character extends JLabel implements Runnable {
                 }
             }
 
-            try{
+            try {
                 Thread.sleep(30);
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
 
             }
 
@@ -109,7 +130,7 @@ public class Character extends JLabel implements Runnable {
         for (int i = 0; i < repaintList.size(); i++) {
             character = repaintList.get(i);
             character.terminate();
-            i=0;
+            i = 0;
         }
         repaintList.clear();
         flag = false;

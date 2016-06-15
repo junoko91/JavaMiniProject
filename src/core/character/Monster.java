@@ -10,14 +10,14 @@ import java.awt.*;
  * Created by JUNO_XPS on 2016-06-09.
  */
 public class Monster extends GraphicObject {
-    private int delayTime = 70 / GameMain.getLevel();
+    private int delayTime = 70 / (GameMain.getLevel());
     UserCharacter user = GameMain.getUser();
     private long lastAttackTime = 0;
 
     public Monster(int coordiX, int coordiY, int monsterType) {
         super(coordiX, coordiY, monsterType);
         this.life = 1;
-        this.name = Main.main.getRd().getWordManager().popWord(GameMain.getLevel());
+        this.name = Main.main.getRd().getWordManager().popWord(GameMain.getLevel()-4);
         thread = new Thread(this);
         thread.start();
     }
@@ -27,7 +27,7 @@ public class Monster extends GraphicObject {
     }
 
     public boolean isImpact() {
-        if (user.check(circles,2)) {
+        if (user.check(circles,2) && life>0) {
             attack();
             return true;
         }
@@ -35,7 +35,10 @@ public class Monster extends GraphicObject {
     }
 
     synchronized public void attack() {
-        if (System.currentTimeMillis() - this.lastAttackTime > 800) {
+        if(GameMain.getStatus()){
+            return;
+        }
+        if (System.currentTimeMillis() - this.lastAttackTime > 1000) {
             user.attacked();
             System.out.println(user.getLife());
             Debug.println("attack");
@@ -51,7 +54,7 @@ public class Monster extends GraphicObject {
         double random = Math.random();
 
         if (oldPoint.equals(this.point)) {
-            if (limit++ > 10) {
+            if (limit++ > count/2) {
                 return;
             }
         }
@@ -77,7 +80,7 @@ public class Monster extends GraphicObject {
 
     public void run() {
         int incX, incY;
-        while (GameMain.isPlaying) {
+        while (GameMain.isPlaying && user.getLife()>0) {
 
             this.blocking();
 
@@ -101,7 +104,7 @@ public class Monster extends GraphicObject {
 
             if (this.move(incX, incY) == false) {
                 if (Math.random() < 0.7) {
-                    this.avoid(20);
+                    this.avoid(30);
                 }
             } else {
                 if (Math.random() < 0.02) {
@@ -111,6 +114,7 @@ public class Monster extends GraphicObject {
 
             sleep(delayTime);
         }
+        GameMain.resume();
         die();
     }
 }

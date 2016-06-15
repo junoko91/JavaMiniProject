@@ -21,9 +21,9 @@ public class Start extends JPanel {
         subject.setForeground(Color.white);
         JButton start = Custom.button(0, 120, 224, 40, "Start", 20);
         JButton word = Custom.button(0, 170, 224, 40, "단어", 20);
-        JButton option = Custom.button(0, 220, 224, 40, "Option", 20);
-        JButton rank = Custom.button(0, 270, 224, 40, "Ranking", 20);
-        JButton exit = Custom.button(0, 320, 224, 40, "나가기", 20);
+       // JButton option = Custom.button(0, 220, 224, 40, "Option", 20);
+        JButton rank = Custom.button(0, 220, 224, 40, "Ranking", 20);
+        JButton exit = Custom.button(0, 270, 224, 40, "나가기", 20);
 
         StartListener startListener = new StartListener(main);
         WordListener wordListener = new WordListener(main);
@@ -33,14 +33,14 @@ public class Start extends JPanel {
 
         start.addActionListener(startListener);
         word.addActionListener(wordListener);
-        option.addActionListener(optionListener);
+        //option.addActionListener(optionListener);
         rank.addActionListener(rankListener);
         exit.addActionListener(exitListener);
 
         add(subject);
         add(start);
         add(word);
-        add(option);
+        //add(option);
         add(rank);
         add(exit);
     }
@@ -86,7 +86,12 @@ public class Start extends JPanel {
 
     private class RankListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            Main.main.getRankPanel().readFile();
+            Main.main.getRankPanel().setVisible(true);
+            Main.main.getRankPanel().setParentPanel(Main.main.getStartPanel());
 
+            Main.main.getMenuPanel().setVisible(false);
+            Main.main.getStartPanel().setVisible(false);
         }
     }
 
